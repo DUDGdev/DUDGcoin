@@ -6,7 +6,8 @@ pipeline {
         sh '''rm -rf /mnt/DUDGcoin
 cp -a $WORKSPACE /mnt/DUDGcoin
 cd /mnt
-cp compile-blk.sh DUDGcoin/compile-blk.sh 
+cp compile-dud.sh DUDGcoin/compile-blk.sh 
+
 '''
       }
     }
@@ -64,7 +65,7 @@ mkdir -p $JOB_NAME/$BUILD_NUMBER
       parallel {
         stage('Move Linux QT') {
           steps {
-            sh '''cp DUDGcoin /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt
+            sh '''cp dudgcoin-qt /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt
 '''
           }
         }
@@ -75,7 +76,7 @@ mkdir -p $JOB_NAME/$BUILD_NUMBER
         }
         stage('Move Windows QT') {
           steps {
-            sh 'cp /mnt/DUDGcoin/release/DUDGcoin.exe /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt.exe'
+            sh 'cp /mnt/DUDGcoin/release/dudgcoin-qt.exe /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt.exe'
           }
         }
       }
