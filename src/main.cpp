@@ -3075,9 +3075,9 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
            badVersion = true;
         if (pfrom->nVersion < MIN_PEER_PROTO_VERSION)
            badVersion = true;
-        if (nBestHeight >= 60000 && pfrom->nVersion < 70011)
+        if (nBestHeight >= 60000 && pfrom->nVersion < 70006)
            badVersion = true;    	
-	   if (nBestHeight >= 42500 && pfrom->nVersion < 70011)
+	   if (nBestHeight >= 10100 && pfrom->nVersion < 70010)
            badVersion = true;    	
         if (badVersion)
         {
