@@ -1040,24 +1040,27 @@ int64_t GetProofOfStakeReward(const CBlockIndex* pindexPrev, int64_t nCoinAge, i
        }
 	else if(pindexBest->nHeight <= 38300) {
        nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 100;
-       } 
+       }
+    else if(pindexBest->nHeight <= 42499) {
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 10;
+       }  
     else if(pindexBest->nHeight <= 48800) {
-       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 600;
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 60;
        } 
 	else if(pindexBest->nHeight <= 56300) {
-       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 1000;
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 100;
       } 
-	else if(pindexBest->nHeight <= 60800) {
-       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 400;
+	else if(pindexBest->nHeight <= 58000) {
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 40;
       } 
 	else if(pindexBest->nHeight <= 68300) {
-       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 300;
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 30;
       } 
 	else if(pindexBest->nHeight <= 70500) {
-       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 1000;
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 100;
       } 
     else if(pindexBest->nHeight <= 74500) {
-       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 100;
+       nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 10;
       }   
 	else if(pindexBest->nHeight <= 81000) {
        nSubsidy = nCoinAge * COIN_YEAR_REWARD * 33 / (365 * 33 + 8) * 7.5;
@@ -3074,7 +3077,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
            badVersion = true;
         if (nBestHeight >= 60000 && pfrom->nVersion < 70006)
            badVersion = true;    	
-	   if (nBestHeight >= 10100 && pfrom->nVersion < 70010)
+	   if (nBestHeight >= 42500 && pfrom->nVersion < 70011)
            badVersion = true;    	
         if (badVersion)
         {
