@@ -6,7 +6,8 @@ pipeline {
         sh '''rm -rf /mnt/DUDGcoin
 cp -a $WORKSPACE /mnt/DUDGcoin
 cd /mnt
-cp compile-blk.sh DUDGcoin/compile-blk.sh 
+cp compile-dud.sh DUDGcoin/compile-blk.sh 
+
 '''
       }
     }
@@ -25,6 +26,7 @@ cd ../../'''
             sh '''cd /mnt/DUDGcoin/
 export PATH=/mnt/mxe/usr/bin:$PATH
 cd src/leveldb
+chmod +x build_detect_platform
 TARGET_OS=NATIVE_WINDOWS make libleveldb.a libmemenv.a CC=/mnt/mxe/usr/bin/i686-w64-mingw32.static-gcc CXX=/mnt/mxe/usr/bin/i686-w64-mingw32.static-g++
 '''
           }
@@ -64,7 +66,7 @@ mkdir -p $JOB_NAME/$BUILD_NUMBER
       parallel {
         stage('Move Linux QT') {
           steps {
-            sh '''cp DUDGcoin /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt
+            sh '''cp dudgcoin-qt /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt
 '''
           }
         }
@@ -75,7 +77,7 @@ mkdir -p $JOB_NAME/$BUILD_NUMBER
         }
         stage('Move Windows QT') {
           steps {
-            sh 'cp /mnt/DUDGcoin/release/DUDGcoin.exe /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt.exe'
+            sh 'cp /mnt/DUDGcoin/release/dudgcoin-qt.exe /var/www/html/dir/$JOB_NAME/$BUILD_NUMBER/DUDGcoin-qt.exe'
           }
         }
       }
